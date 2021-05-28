@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource()
@@ -21,56 +22,71 @@ class Student
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le nom de l'élève est obligatoire")
+     * @Assert\Length(min=2, minMessage="Le nom doit faire deux caractères minimum", max=255)
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le prénom de l'élève est obligatoire")
+     * @Assert\Length(min=3, minMessage="Le prénom doit faire trois caractères minimum", max=255)
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="L'âge est obligatoire")
+     * @Assert\Length(min=1, minMessage="L'âge doit faire un caractère minimum", max=2, maxMessage="L'âge doit faire deux caractères maximum")
      */
     private $age;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le numéro de téléphone est obligatoire")
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="L'email est obligatoire")
+     * @Assert\Email(message="Le format de l'email doit être valide")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le pays est obligatoire")
      */
     private $country;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le support est obligatoire")
      */
     private $support;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le type de session est obligatoire")
      */
     private $typeOfSession;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="La fréquence de cours est obligatoire")
      */
     private $hoursPerWeek;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champs est obligatoire")
      */
     private $prof;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champs est obligatoire")
      */
     private $findOurWebsite;
 
