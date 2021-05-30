@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StudentRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -35,7 +36,7 @@ class Student
     private $firstname;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      * @Assert\NotBlank(message="L'âge est obligatoire")
      * @Assert\Length(min=1, minMessage="L'âge doit faire un caractère minimum", max=2, maxMessage="L'âge doit faire deux caractères maximum")
      */
