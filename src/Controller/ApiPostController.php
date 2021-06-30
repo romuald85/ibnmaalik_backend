@@ -30,14 +30,14 @@ class ApiPostController extends AbstractController
 
         $response->headers->set('Access-Control-Allow-Origin', 'json/application');
 
-        // $message = (new Email())
-        //     ->from($jsonReceived)
-        //     ->to('votreadresse@example.com')
-        //     ->subject('Time for Symfony Mailer!')
-        //     ->text('Sending emails is fun again!')
-        //     ->html('<p>See Twig integration for better HTML integration!</p>');
+        $message = (new Email())
+            ->from($jsonReceived)
+            ->to('votreadresse@example.com')
+            ->subject('Time for Symfony Mailer!')
+            ->text('Sending emails is fun again!')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
 
-        // $mailer->send($message);
+        $mailer->send($message);
 
         return $this->json($jsonReceived, 201);
     }
