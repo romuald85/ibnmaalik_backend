@@ -42,14 +42,9 @@ class Contact
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Le numéro de téléphone est obligatoire")
-     */
-    private $phone;
-
-    /**
      * @ORM\Column(type="text")
      *  @Assert\NotBlank(message="Le message est obligatoire")
+     * @Assert\Length(min=10, minMessage="Le message doit faire dix caractères minimum")
      */
     private $message;
 
@@ -90,18 +85,6 @@ class Contact
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(string $phone): self
-    {
-        $this->phone = $phone;
 
         return $this;
     }

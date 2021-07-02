@@ -5,6 +5,7 @@ namespace App\EventSubscriber;
 
 use App\Entity\Student;
 use Symfony\Component\Mime\Email;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -38,12 +39,15 @@ final class StudentMailSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $message = (new Email())
+        $message = (new TemplatedEmail())
             ->from('system@example.com')
             ->to('contact.ibnmaalik@gmail.com')
             ->subject('Time for Symfony Mailer!')
             ->text('Sending emails is fun again!')
-            ->html('<p>Ibn Maalik!</p>');
+            ->htmlTemplate('emails/student_view.html.twig')
+            ->context([
+                'student' => $student
+            ]);
 
         $this->mailer->send($message);
     }
