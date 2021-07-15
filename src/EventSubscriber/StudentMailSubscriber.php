@@ -50,5 +50,14 @@ final class StudentMailSubscriber implements EventSubscriberInterface
             ]);
 
         $this->mailer->send($message);
+
+        $message1 = (new TemplatedEmail())
+            ->from('contact.ibnmaalik@gmail.com')
+            ->to($student->getEmail())
+            ->subject('Confirmation d\'inscription')
+            ->text('Sending emails is fun again!')
+            ->htmlTemplate('emails/student_confirmation.html.twig');
+
+        $this->mailer->send($message1);
     }
 }
