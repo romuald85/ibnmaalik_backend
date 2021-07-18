@@ -56,7 +56,7 @@ final class ContactMailSubscriber implements EventSubscriberInterface
             ->to($contact->getEmail())
             ->subject('Confirmation d\'inscription')
             ->text('Sending emails is fun again!')
-            ->htmlTemplate('emails/student_confirmation.html.twig');
+            ->htmlTemplate('emails/contact_confirmation.html.twig');
 
         $this->mailer->send($message1);
     }
