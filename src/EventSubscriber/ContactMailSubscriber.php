@@ -40,7 +40,7 @@ final class ContactMailSubscriber implements EventSubscriberInterface
         }
 
         $message = (new TemplatedEmail())
-            ->from('system@example.com')
+            ->from('"Site ibnmaalik" contact.ibnmaalik@gmail.com')
             ->to('contact.ibnmaalik@gmail.com')
             ->subject('Time for Symfony Mailer!')
             ->text('Sending emails is fun again!')
@@ -50,5 +50,14 @@ final class ContactMailSubscriber implements EventSubscriberInterface
             ]);
 
         $this->mailer->send($message);
+
+        $message1 = (new TemplatedEmail())
+            ->from('contact.ibnmaalik@gmail.com')
+            ->to($contact->getEmail())
+            ->subject('Confirmation d\'inscription')
+            ->text('Sending emails is fun again!')
+            ->htmlTemplate('emails/student_confirmation.html.twig');
+
+        $this->mailer->send($message1);
     }
 }
