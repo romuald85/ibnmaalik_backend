@@ -40,7 +40,7 @@ final class StudentMailSubscriber implements EventSubscriberInterface
         }
 
         $message = (new TemplatedEmail())
-            ->from('"Site ibnmaalik" contact.ibnmaalik@gmail.com')
+            ->from($student->getEmail())
             ->to('contact.ibnmaalik@gmail.com')
             ->subject('Time for Symfony Mailer!')
             ->text('Sending emails is fun again!')
